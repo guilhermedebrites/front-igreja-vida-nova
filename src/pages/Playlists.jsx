@@ -5,6 +5,7 @@ import ModalCreatePlaylist from '../components/ModalCreatePlaylist.jsx';
 import { PrimaryButtonStyled } from '../components/styles/ButtonStyled.jsx';
 import { MainTextStyled } from '../components/styles/TextStyled.jsx';
 import CardPlaylists from '../components/CardPlaylists.jsx';
+import api from '../axiosConfig.jsx';
 
 
 const Playlists = () => {
@@ -23,7 +24,7 @@ const getEscopos = () => {
     };
 
     const getPlaylists = () => {
-        axios.get('http://localhost:8080/playlist/listar')
+        api.get('/playlist/listar')
             .then(response => {
                 setPlaylists(response.data);
             })
@@ -33,7 +34,7 @@ const getEscopos = () => {
     };
 
     const handleDelete = (playlist) => {
-        axios.delete(`http://localhost:8080/playlist/deletar/${playlist.id}`)
+        api.delete(`/playlist/deletar/${playlist.id}`)
             .then(() => {
                 getPlaylists();
             })

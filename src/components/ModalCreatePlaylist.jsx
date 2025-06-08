@@ -1,11 +1,10 @@
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import axios from 'axios';
 import * as React from 'react';
+import api from '../axiosConfig';
 import InputText from '../components/InputText';
-import InputSelect from './InputSelect';
-import { MainTextStyled } from './styles/TextStyled';
 import { PrimaryButtonStyled } from './styles/ButtonStyled';
+import { MainTextStyled } from './styles/TextStyled';
 
 const style = {
   position: 'absolute',
@@ -30,7 +29,7 @@ const ModalCreatePlaylist = (props) => {
             link
         };
 
-        axios.post('http://localhost:8080/playlist/cadastrar', playlist)
+        api.post('/playlist/cadastrar', playlist)
             .then(() => {
                 props.handleClose();
             })
