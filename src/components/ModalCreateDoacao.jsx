@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import axios from 'axios';
 import * as React from 'react';
+import api from '../axiosConfig';
 import InputText from '../components/InputText';
 import { PrimaryButtonStyled } from './styles/ButtonStyled';
 import { MainTextStyled } from './styles/TextStyled';
@@ -30,7 +30,7 @@ const ModalCreateDoacao = (props) => {
       meta: parseFloat(meta)
     };
 
-    axios.post('http://18.223.170.200:8080/doacao/cadastrar', doacao)
+    api.post('/doacao/cadastrar', doacao)
       .then(() => {
         props.handleClose();
       })

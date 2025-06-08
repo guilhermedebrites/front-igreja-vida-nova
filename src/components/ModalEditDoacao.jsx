@@ -5,6 +5,7 @@ import * as React from 'react';
 import InputText from './InputText';
 import { PrimaryButtonStyled } from './styles/ButtonStyled';
 import { MainTextStyled } from './styles/TextStyled';
+import api from '../axiosConfig';
 
 const style = {
     position: 'absolute',
@@ -26,7 +27,7 @@ const ModalEditDoacao = (props) => {
     }, [props.doacao]);
 
     const handleSave = () => {
-        axios.put(`http://18.223.170.200:8080/doacao/atualizar/${doacao.id}`, {
+        api.put(`/doacao/atualizar/${doacao.id}`, {
             titulo: doacao.titulo,
             descricao: doacao.descricao,
             meta: parseFloat(doacao.meta)

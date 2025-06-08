@@ -5,6 +5,7 @@ import InputText from './InputText';
 import { PrimaryButtonStyled } from './styles/ButtonStyled';
 import { MainTextStyled } from './styles/TextStyled';
 import axios from 'axios';
+import api from '../axiosConfig';
 
 const style = {
     position: 'absolute',
@@ -25,7 +26,7 @@ const ModalDoar = ({ open, handleClose, doacaoId }) => {
 
     const handleSelect = (v) => setValor(v);
     const handleConfirmar = () => {
-        axios.put(`http://18.223.170.200:8080/doacao/doarDinheiro/${doacaoId}`, {
+        api.put(`/doacao/doarDinheiro/${doacaoId}`, {
             doacaoId: doacaoId,
             valor: parseFloat(valor)
         })

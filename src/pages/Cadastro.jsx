@@ -1,9 +1,9 @@
 import { Container } from '@mui/material';
 import React from 'react';
+import api from '../axiosConfig';
 import InputText from '../components/InputText';
-import { MainTextStyled, SecondTextStyled } from '../components/styles/TextStyled';
 import { PrimaryButtonStyled } from '../components/styles/ButtonStyled';
-import axios from 'axios';
+import { MainTextStyled, SecondTextStyled } from '../components/styles/TextStyled';
 
 const Cadastro = () => {
 
@@ -14,7 +14,7 @@ const Cadastro = () => {
     const [password, setPassword] = React.useState('');
 
     const handleRegister = () => {
-        axios.post('http://18.223.170.200:8080/membros/cadastrar', {
+        api.post('/membros/cadastrar', {
             fullName: fullName,
             birthday: birthDate,
             username: username,

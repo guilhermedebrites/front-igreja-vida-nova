@@ -7,6 +7,7 @@ import InputSelect from './InputSelect';
 import { MainTextStyled } from './styles/TextStyled';
 import { PrimaryButtonStyled } from './styles/ButtonStyled';
 import { Alert } from '@mui/material';
+import api from '../axiosConfig';
 
 const style = {
   position: 'absolute',
@@ -46,7 +47,7 @@ const ModalCreateCerimonia = (props) => {
             data: data,
             descricao: descricao,
         };
-        axios.post(`http://18.223.170.200:8080/cerimonia/cadastrar/${userId}`, cerimonia)
+        api.post(`/cerimonia/cadastrar/${userId}`, cerimonia)
             .then(() => {
                 props.handleClose();
             })

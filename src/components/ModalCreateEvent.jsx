@@ -1,11 +1,11 @@
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import axios from 'axios';
 import * as React from 'react';
+import api from '../axiosConfig';
 import InputText from '../components/InputText';
 import InputSelect from './InputSelect';
-import { MainTextStyled } from './styles/TextStyled';
 import { PrimaryButtonStyled } from './styles/ButtonStyled';
+import { MainTextStyled } from './styles/TextStyled';
 
 const style = {
   position: 'absolute',
@@ -45,7 +45,7 @@ const ModalCreateEvent = (props) => {
             data: data,
             tema: tema,
         };
-        axios.post('http://18.223.170.200:8080/evento/cadastrar', evento)
+        api.post('/evento/cadastrar', evento)
             .then(() => {
                 props.handleClose();
             })

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import InputText from './InputText';
 import { PrimaryButtonStyled } from './styles/ButtonStyled';
 import { MainTextStyled } from './styles/TextStyled';
+import api from '../axiosConfig';
 
 const style = {
     position: 'absolute',
@@ -28,7 +29,7 @@ const ModalEditEvent = (props) => {
     }, [props.evento]);
 
     const handleSave = () => {
-        axios.put(`http://18.223.170.200:8080/evento/atualizar/${props.evento.id}`, {
+        api.put(`/evento/atualizar/${props.evento.id}`, {
             tema: evento.tema,
             data: evento.data,
             endereco: evento.endereco

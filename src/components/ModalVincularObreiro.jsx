@@ -1,11 +1,11 @@
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import axios from 'axios';
 import * as React from 'react';
+import { useParams } from 'react-router-dom';
+import api from '../axiosConfig';
 import InputSelect from './InputSelect';
 import { PrimaryButtonStyled } from './styles/ButtonStyled';
 import { MainTextStyled } from './styles/TextStyled';
-import { useParams } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -27,7 +27,7 @@ const ModalVincularObreiro = (props) => {
     const { id } = useParams();
 
     const fetchObreiros = () => {
-        axios.get(`http://18.223.170.200:8080/eventoObreiro/listaObreiros/${id}`)
+        api.get(`/eventoObreiro/listaObreiros/${id}`)
             .then((res) => {
                 setObreiros(res.data);
             })
@@ -39,7 +39,7 @@ const ModalVincularObreiro = (props) => {
     const handleAdicionarObreiro = () => {
         console.log('Obreiro selecionado:', id);
 
-        axios.post(`http://18.223.170.200:8080/eventoObreiro/criar`, {
+        api.post(`/eventoObreiro/criar`, {
             evento: {
                 id: id,
             },

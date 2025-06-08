@@ -1,10 +1,10 @@
 import { Container } from '@mui/material';
-import axios from 'axios';
 import React from 'react';
 import CardCerimonia from '../components/CardCerimonia';
 import ModalCreateCerimonia from '../components/ModalCreateCerimonia';
 import { PrimaryButtonStyled } from '../components/styles/ButtonStyled';
 import { MainTextStyled } from '../components/styles/TextStyled';
+import api from '../axiosConfig';
 
 const Cerimonias = () => {
 
@@ -13,7 +13,7 @@ const Cerimonias = () => {
     const [openModalCreateCerimonia, setOpenModalCreateCerimonia] = React.useState(false);
 
     const getCerimonias = () => {
-        axios.get('http://18.223.170.200:8080/cerimonia/listar')
+        api.get('/cerimonia/listar')
             .then(response => {
                 setCerimonias(response.data);
             })
@@ -34,7 +34,7 @@ const Cerimonias = () => {
 
     const getUserCerimonias = () => {
         const userId = localStorage.getItem('userId');
-        axios.get(`http://18.223.170.200:8080/cerimonia/listarPorUsuario/${userId}`)
+        api.get(`/cerimonia/listarPorUsuario/${userId}`)
             .then(response => {
                 setCerimonias(response.data);
             })
@@ -44,7 +44,7 @@ const Cerimonias = () => {
     }
 
     const handleAcceptCerimonia = (cerimoniaId) => {
-        axios.patch(`http://18.223.170.200:8080/cerimonia/atualizarStatus/${cerimoniaId}`, {
+        api.patch(`/cerimonia/atualizarStatus/${cerimoniaId}`, {
             statusType: 'ACEITO'
         })
             .then(response => {
@@ -57,7 +57,7 @@ const Cerimonias = () => {
     }
 
     const handleRecuseCerimonia = (cerimoniaId) => {
-        axios.patch(`http://18.223.170.200:8080/cerimonia/atualizarStatus/${cerimoniaId}`, {
+        api.patch(`/cerimonia/atualizarStatus/${cerimoniaId}`, {
             statusType: 'RECUSADO'
         })
             .then(response => {

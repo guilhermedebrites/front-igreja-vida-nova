@@ -2,11 +2,11 @@ import { faCheck, faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-ico
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import axios from 'axios';
 import * as React from 'react';
 import InputText from './InputText';
 import { PrimaryButtonStyled } from './styles/ButtonStyled';
 import { MainTextStyled } from './styles/TextStyled';
+import api from '../axiosConfig';
 
 const style = {
   position: 'absolute',
@@ -28,7 +28,7 @@ const ModalGerenciarFuncoes = (props) => {
     const [editedValues, setEditedValues] = React.useState({});
 
     const getFuncoes = () => {
-        axios.get('http://18.223.170.200:8080/funcao/listar')
+        api.get('/funcao/listar')
                 .then(response => {
                     setFuncoes(response.data);
                 })
@@ -48,7 +48,7 @@ const ModalGerenciarFuncoes = (props) => {
     };
 
     const handleEditSave = (id) => {
-        axios.put(`http://18.223.170.200:8080/funcao/${id}`, { 
+        api.put(`/funcao/${id}`, { 
             id: id,
             nomeFuncao: editedValues[id] 
         })
@@ -65,7 +65,7 @@ const ModalGerenciarFuncoes = (props) => {
     };
 
     const handleDelete = (id) => {
-        axios.delete(`http://18.223.170.200:8080/funcao/${id}`, { 
+        api.delete(`/funcao/${id}`, { 
             id: id
         })
         .then(() => {
@@ -78,7 +78,7 @@ const ModalGerenciarFuncoes = (props) => {
 
     const handleCreateFuncao = () => {
         const newFuncao = { nomeFuncao: 'Nova Função' };
-        axios.post('http://18.223.170.200:8080/funcao/criar', newFuncao)
+        api.post('/funcao/criar', newFuncao)
             .then(() => {
                 getFuncoes();
             })
