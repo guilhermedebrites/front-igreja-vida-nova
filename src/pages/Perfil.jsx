@@ -13,6 +13,8 @@ const Perfil = () => {
         birthday: '',
     });
 
+    const [image, setImage] = React.useState(null);
+
     const getUserInfo = () => {
         api.get(`/membros/buscarPorId/${user.id}`)
             .then((response) => {

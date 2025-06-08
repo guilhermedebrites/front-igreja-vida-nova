@@ -24,14 +24,15 @@ const Header = () => {
     }
 
     const verifyAuth = () => {
-        console.log("Verificando autenticação...");
-        const accessToken = localStorage.getItem("access_token");
-
-        if (!accessToken) {
-            setIsLoading(false);
-            window.location.href = "/login";
-        } else {
-            setIsLoading(true)
+        if(window.location.pathname !== '/login' && window.location.pathname !== '/cadastrar') {
+            console.log("Verificando autenticação...");
+            const accessToken = localStorage.getItem("access_token");
+            if (!accessToken) {
+                setIsLoading(false);
+                window.location.href = "/login";
+            } else {
+                setIsLoading(true)
+            }
         }
     };
 
