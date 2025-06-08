@@ -24,24 +24,26 @@ const Header = () => {
     }
 
     const verifyAuth = () => {
-        console.log("Verificando autenticação...");
+        const publicRoutes = ['/login', '/cadastrar'];
+        const currentPath = window.location.pathname;
         const accessToken = localStorage.getItem("access_token");
 
-        if (!accessToken) {
-            setIsLoading(false);
-            window.location.href = "/login";
+        if (!publicRoutes.includes(currentPath) && !accessToken) {
+            navigate('/login', { replace: true });
+            setIsLoading(true);
         } else {
-            setIsLoading(true)
+            setIsLoading(false);
         }
     };
 
     React.useEffect(() => {
-        getEscopos();
-    }, [activeItem]);
-
-    React.useEffect(() => {
         verifyAuth();
     }, []);
+
+
+    React.useEffect(() => {
+        getEscopos();
+    }, [activeItem]);
 
     return (
         <>
@@ -142,7 +144,7 @@ const Header = () => {
                             navigate('/perfil');
                         }}
                     />
-                    {isLoading ? (
+                    {localStorage.getItem('access_token') ? (
                         <MenuItems 
                             icon={faLongArrowAltLeft} 
                             text={'Sair'} 
@@ -152,12 +154,12 @@ const Header = () => {
                                 navigate('/login');
                             }}
                         />
-                    ):(
+                    ) : (
                         <MenuItems 
                             text={'Entrar'} 
                             color={'#858D95'}
                             onClick={() => {
-                                window.location.href = '/login';
+                                navigate('/login');
                             }}
                         />
                     )}
