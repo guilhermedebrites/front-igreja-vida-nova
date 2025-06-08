@@ -18,6 +18,7 @@ const style = {
   boxShadow: 24,
   p: 4,
   borderRadius: '20px',
+  maxHeight: '800px', overflowY: 'auto', scrollbarWidth: 'none'
 };
 
 
