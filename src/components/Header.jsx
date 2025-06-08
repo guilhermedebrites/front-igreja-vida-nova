@@ -28,7 +28,9 @@ const Header = () => {
         const currentPath = window.location.pathname;
         const accessToken = localStorage.getItem("access_token");
 
-        if (!publicRoutes.includes(currentPath) && !accessToken) {
+        const isPublicRoute = publicRoutes.some(route => currentPath.startsWith(route));
+
+        if (!isPublicRoute && !accessToken) {
             navigate('/login', { replace: true });
             setIsLoading(true);
         } else {
