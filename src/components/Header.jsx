@@ -39,12 +39,8 @@ const Header = () => {
     };
 
     React.useEffect(() => {
-        verifyAuth();
-    }, []);
-
-
-    React.useEffect(() => {
         getEscopos();
+        verifyAuth();
     }, [activeItem]);
 
     return (
