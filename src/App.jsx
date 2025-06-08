@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import MinhasFuncoes from './pages/MinhasFuncoes';
 import PedirOracao from './pages/PedirOracao';
 import Perfil from './pages/Perfil';
+import Playlists from './pages/Playlists'
 
 const App = () => {
   const location = useLocation();  
@@ -34,6 +35,7 @@ const App = () => {
         <Route path="/pedir-oracao" element={<PedirOracao />} />
         <Route path="/cerimonias" element={<Cerimonias />} />
         <Route path="/minhas-funcoes" element={<MinhasFuncoes /> } />
+        <Route path="/playlists" element={<Playlists/>} />
         <Route path="*" element={<h1>404 - Página não encontrada</h1>} />
       </Routes>
     </>
