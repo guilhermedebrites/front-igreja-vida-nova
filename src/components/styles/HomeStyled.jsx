@@ -3,8 +3,6 @@ import styled from 'styled-components';
 export const BirthdayBoxStyled = styled.div`
     background-color: white;
     border-radius: 20px;
-    width: 100%;
-    max-width: 400px;
     padding: 16px 26px;
 `;
 

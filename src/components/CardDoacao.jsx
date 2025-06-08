@@ -19,7 +19,6 @@ const CardDoacao = (props) => {
             style={{
                 backgroundColor: '#FFFFFF',
                 width: '342px',
-                height: '470px',
                 padding: '16px',
                 borderRadius: '12px',
             }}
