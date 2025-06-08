@@ -1,10 +1,10 @@
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import axios from 'axios';
 import * as React from 'react';
 import InputSelect from './InputSelect';
 import { PrimaryButtonStyled } from './styles/ButtonStyled';
 import { MainTextStyled } from './styles/TextStyled';
+import api from '../axiosConfig';
 
 const style = {
   position: 'absolute',
@@ -24,7 +24,7 @@ const ModalAddObreiro = (props) => {
     const [membroSelecionado, setMembroSelecionado] = React.useState("");
 
     const getMembros = () => {
-        axios.get('http://18.223.170.200:8080/membros/listar')
+        api.get('/membros/listar')
                 .then(response => {
                     setMembros(response.data);
                 })
@@ -34,7 +34,7 @@ const ModalAddObreiro = (props) => {
     }
 
     const handleAdicionarObreiro = () => {
-        axios.put(`http://18.223.170.200:8080/membros/promoverObreiro/${membroSelecionado}`)
+        api.put(`/membros/promoverObreiro/${membroSelecionado}`)
             .then(() => {
                 props.handleClose();
                 getMembros();

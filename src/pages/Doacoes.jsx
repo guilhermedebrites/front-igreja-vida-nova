@@ -6,6 +6,7 @@ import ModalCreateDoacao from '../components/ModalCreateDoacao';
 import ModalEditDoacao from '../components/ModalEditDoacao';
 import { PrimaryButtonStyled } from '../components/styles/ButtonStyled';
 import { MainTextStyled } from '../components/styles/TextStyled';
+import api from '../axiosConfig';
 
 const Doacoes = () => {
     const [isPastor, setIsPastor] = useState(false);
@@ -23,7 +24,7 @@ const Doacoes = () => {
     };
 
     const getDoacoes = () => {
-        axios.get('http://18.223.170.200:8080/doacao/listar')
+        api.get('/doacao/listar')
             .then(response => {
                 setDoacoes(response.data);
             })
@@ -33,7 +34,7 @@ const Doacoes = () => {
     };
 
     const handleDelete = (doacao) => {
-        axios.delete(`http://18.223.170.200:8080/doacao/${doacao.id}`)
+        api.delete(`/doacao/${doacao.id}`)
             .then(() => {
                 getDoacoes();
             })

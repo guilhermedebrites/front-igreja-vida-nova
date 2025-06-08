@@ -1,6 +1,6 @@
 import React from 'react';
+import api from '../axiosConfig';
 import { MainTextStyled, SecondTextStyled } from '../components/styles/TextStyled';
-import axios from 'axios';
 
 const MinhasFuncoes = () => {
 
@@ -18,7 +18,7 @@ const MinhasFuncoes = () => {
 
     const handlParticipacoes = () => {
         const id = JSON.parse(localStorage.getItem('userId'));
-        axios.get(`http://18.223.170.200:8080/eventoObreiro/participacoesObreiro/${id}`)
+        api.get(`/eventoObreiro/participacoesObreiro/${id}`)
             .then((res) => {
                 setParticipacoes(res.data);
             })

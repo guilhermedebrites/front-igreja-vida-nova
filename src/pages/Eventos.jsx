@@ -1,11 +1,11 @@
 import { Container } from '@mui/material';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import api from '../axiosConfig';
 import CardEvent from '../components/CardEvent';
-import { MainTextStyled } from '../components/styles/TextStyled';
-import { PrimaryButtonStyled } from '../components/styles/ButtonStyled';
 import ModalCreateEvent from '../components/ModalCreateEvent';
 import ModalEditEvent from '../components/ModalEditEvent';
+import { PrimaryButtonStyled } from '../components/styles/ButtonStyled';
+import { MainTextStyled } from '../components/styles/TextStyled';
 
 const Eventos = () => {
     const [isPastor, setIsPastor] = useState(false);
@@ -23,7 +23,7 @@ const Eventos = () => {
     };
 
     const getEventos = () => {
-        axios.get('http://18.223.170.200:8080/evento/listar/mesAtual')
+        api.get('/evento/listar/mesAtual')
             .then(response => {
                 setEventos(response.data);
             })
@@ -33,7 +33,7 @@ const Eventos = () => {
     };
 
     const handleDelete = (evento) => {
-        axios.delete(`http://18.223.170.200:8080/evento/${evento.id}`)
+        api.delete(`/evento/${evento.id}`)
             .then(() => {
                 getEventos();
             })

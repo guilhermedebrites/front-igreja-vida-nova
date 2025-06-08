@@ -1,10 +1,10 @@
 import { Container } from "@mui/material";
 import React, { useState } from "react";
-import { MainTextStyled, SecondTextStyled } from "../components/styles/TextStyled";
-import axios from "axios";
-import { PrimaryButtonStyled } from "../components/styles/ButtonStyled";
+import api from "../axiosConfig";
 import ModalAddObreiro from "../components/ModalAddObreiro";
 import ModalGerenciarFuncoes from "../components/ModalGerenciarFuncoes";
+import { PrimaryButtonStyled } from "../components/styles/ButtonStyled";
+import { MainTextStyled, SecondTextStyled } from "../components/styles/TextStyled";
 
 const GerenciarObreiros = () => {
 
@@ -13,7 +13,7 @@ const GerenciarObreiros = () => {
     const [obreiros, setObreiros] = React.useState([]);
 
     const getObreiros = () => {
-        axios.get('http://18.223.170.200:8080/obreiros/')
+        api.get('/obreiros/')
                 .then(response => {
                     setObreiros(response.data);
                 })

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { MainTextStyled } from '../components/styles/TextStyled';
-import { PrimaryButtonStyled } from '../components/styles/ButtonStyled';
-import axios from 'axios';
+import api from '../axiosConfig';
 import InputText from '../components/InputText';
+import { PrimaryButtonStyled } from '../components/styles/ButtonStyled';
+import { MainTextStyled } from '../components/styles/TextStyled';
 
 const Perfil = () => {
 
@@ -14,7 +14,7 @@ const Perfil = () => {
     });
 
     const getUserInfo = () => {
-        axios.get(`http://18.223.170.200:8080/membros/buscarPorId/${user.id}`)
+        api.get(`/membros/buscarPorId/${user.id}`)
             .then((response) => {
                 setUser(response.data);
             })
@@ -24,7 +24,7 @@ const Perfil = () => {
     }
 
     const updateUserInfo = () => {
-        axios.put(`http://18.223.170.200:8080/membros/atualizar/${user.id}`, user)
+        api.put(`/membros/atualizar/${user.id}`, user)
             .then((response) => {
                 console.log('User updated successfully:', response.data);
                 alert('Dados atualizados com sucesso!');

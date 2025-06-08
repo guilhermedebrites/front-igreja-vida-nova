@@ -1,5 +1,6 @@
 import { Container } from "@mui/material";
 import React, { useEffect } from "react";
+import api from "../axiosConfig";
 import {
   BirthdayBoxStyled,
   BirthdayRankingStyled,
@@ -9,7 +10,6 @@ import {
   MainTextStyled,
   SecondTextStyled,
 } from "../components/styles/TextStyled";
-import axios from "axios";
 
 const Home = () => {
   const [aniversariantes, setAniversariantes] = React.useState([]);
@@ -24,8 +24,8 @@ const Home = () => {
   };
 
   const handleAniversariantes = () => {
-    axios
-      .get("http://18.223.170.200:8080/membros/listar/aniversariantesDoMes")
+    api
+      .get("/membros/listar/aniversariantesDoMes")
       .then((response) => {
         setAniversariantes(response.data);
       })

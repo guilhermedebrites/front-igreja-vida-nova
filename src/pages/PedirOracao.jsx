@@ -1,5 +1,5 @@
-import axios from 'axios';
 import * as React from 'react';
+import api from '../axiosConfig';
 import InputText from '../components/InputText';
 import { PrimaryButtonStyled } from '../components/styles/ButtonStyled';
 import { MainTextStyled } from '../components/styles/TextStyled';
@@ -10,7 +10,7 @@ const PedirOracao = () => {
     const [descricao, setDescricao] = React.useState();
 
     const getNextEvent = () => {
-        axios.get(`http://18.223.170.200:8080/evento/proximoCulto`)
+        api.get(`/evento/proximoCulto`)
             .then((res) => {
                 setEvento(res.data);
             })
@@ -20,7 +20,7 @@ const PedirOracao = () => {
     }
 
     const sendPedido = () => {
-        axios.post(`http://18.223.170.200:8080/pedidoOracao/cadastrar`, {
+        api.post(`/pedidoOracao/cadastrar`, {
             id: evento.id,
             descricao: descricao
         })
