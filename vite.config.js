@@ -4,21 +4,22 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    include: ['date-fns'],
+    include: ['date-fns', 'react', 'react-dom'],
     esbuildOptions: {
-      target: 'esnext', // Garante que as libs sejam transpiladas corretamente
+      target: 'es2020',
     },
   },
   build: {
-    outDir: 'dist', // Saída esperada
-    chunkSizeWarningLimit: 1000, // Aumenta limite de aviso para chunks grandes
+    target: 'es2020',
+    outDir: 'dist',
+    chunkSizeWarningLimit: 1000,
     commonjsOptions: {
-      transformMixedEsModules: true, // Evita erro com libs CJS misturadas com ESM
+      transformMixedEsModules: true,
+      include: [/node_modules/],
     },
     rollupOptions: {
       output: {
         manualChunks(id) {
-          // Quebra de chunks para evitar um único bundle muito grande
           if (id.includes('node_modules')) {
             if (id.includes('react')) return 'vendor_react'
             if (id.includes('date-fns')) return 'vendor_datefns'
