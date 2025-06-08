@@ -30,6 +30,7 @@ const Header = () => {
 
         if (!publicRoutes.includes(currentPath) && !accessToken) {
             navigate('/login', { replace: true });
+            setIsLoading(true);
         } else {
             setIsLoading(false);
         }

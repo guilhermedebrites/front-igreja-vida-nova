@@ -15,7 +15,7 @@ const CardCerimonia = (props) => {
                 borderRadius: '12px',
             }}
         >
-            <img src="../src/assets/images/backgroundImage.png" alt="Event" style={{ width: '311px', height: '186px', marginBottom: '14px' }} />
+            <img src="https://igreja-vida-nova.s3.us-east-2.amazonaws.com/images/backgroundImage.png" alt="Event" style={{ width: '311px', height: '186px', marginBottom: '14px' }} />
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <MainTextStyled color='#030B16' fontSize='16px'>{props.cerimonia.cerimoniaType}</MainTextStyled>
                 {props.isPastor && (
