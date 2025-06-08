@@ -11,7 +11,6 @@ const CardCerimonia = (props) => {
             style={{
                 backgroundColor: '#FFFFFF',
                 width: '342px',
-                height: '370px',
                 padding: '16px',
                 borderRadius: '12px',
             }}

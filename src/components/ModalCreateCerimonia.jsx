@@ -43,7 +43,7 @@ const ModalCreateCerimonia = (props) => {
         const userId = localStorage.getItem('userId');
         const cerimonia = {
             cerimoniaType: tipoCerimonia,
-            quantidadeDeConvidados: quantidadeDeConvidados,
+            quantidadeConvidados: quantidadeDeConvidados,
             data: data,
             descricao: descricao,
         };

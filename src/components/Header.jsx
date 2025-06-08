@@ -10,6 +10,7 @@ const Header = () => {
     const [activeItem, setActiveItem] = React.useState(location.pathname);
     const [isPastor, setIsPastor] = React.useState(false);
     const [isObreiro, setIsObreiro] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(true);
     const navigate = useNavigate();
 
     const getEscopos = () => {
@@ -22,9 +23,25 @@ const Header = () => {
         }
     }
 
+    const verifyAuth = () => {
+        console.log("Verificando autenticação...");
+        const accessToken = localStorage.getItem("access_token");
+
+        if (!accessToken) {
+            setIsLoading(false);
+            window.location.href = "/login";
+        } else {
+            setIsLoading(true)
+        }
+    };
+
     React.useEffect(() => {
         getEscopos();
     }, [activeItem]);
+
+    React.useEffect(() => {
+        verifyAuth();
+    }, []);
 
     return (
         <>
@@ -115,15 +132,25 @@ const Header = () => {
                             navigate('/perfil');
                         }}
                     />
-                    <MenuItems 
-                        icon={faLongArrowAltLeft} 
-                        text={'Sair'} 
-                        color={'#858D95'}
-                        onClick={() => {
-                            localStorage.clear();
-                            navigate('/login');
-                        }}
-                    />
+                    {isLoading ? (
+                        <MenuItems 
+                            icon={faLongArrowAltLeft} 
+                            text={'Sair'} 
+                            color={'#858D95'}
+                            onClick={() => {
+                                localStorage.clear();
+                                navigate('/login');
+                            }}
+                        />
+                    ):(
+                        <MenuItems 
+                            text={'Entrar'} 
+                            color={'#858D95'}
+                            onClick={() => {
+                                window.location.href = '/login';
+                            }}
+                        />
+                    )}
                 </div>
             </HeaderBox>
         </>

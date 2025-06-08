@@ -23,7 +23,7 @@ const Eventos = () => {
     };
 
     const getEventos = () => {
-        api.get('/evento/listar/mesAtual')
+        api.get('/evento/listarEventos')
             .then(response => {
                 setEventos(response.data);
             })
