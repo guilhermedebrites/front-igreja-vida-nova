@@ -7,6 +7,7 @@ import ModalVincularObreiro from '../components/ModalVincularObreiro';
 import { PrimaryButtonStyled } from '../components/styles/ButtonStyled';
 import { MainTextStyled, SecondTextStyled } from '../components/styles/TextStyled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import api from '../axiosConfig';
 
 const GerenciarObreirosEvento = () => {
     const [eventoObreiro, setEventoObreiro] = useState([]);
@@ -16,7 +17,7 @@ const GerenciarObreirosEvento = () => {
     const { id } = useParams();
 
     const fetchObreiros = () => {
-        axios.get(`18.223.170.200/eventoObreiro/listaDeEventoObreiro/${id}`)
+        api.get(`/eventoObreiro/listaDeEventoObreiro/${id}`)
             .then((res) => {
                 setEventoObreiro(res.data);
                 const selecionadas = {};
@@ -31,7 +32,7 @@ const GerenciarObreirosEvento = () => {
     };
 
     const getFuncoes = () => {
-        axios.get('18.223.170.200/funcao/listar')
+        api.get('/funcao/listar')
             .then(response => {
                 setFuncoes(response.data);
             })
@@ -41,7 +42,7 @@ const GerenciarObreirosEvento = () => {
     };
 
     const handleFuncao = (evento, funcaoId) => {
-        axios.put(`18.223.170.200/eventoObreiro/alterarFuncao/${evento.id}`, {
+        api.put(`/eventoObreiro/alterarFuncao/${evento.id}`, {
             idDaFuncao: funcaoId
         }).then(() => {
                 alert('Funções atualizadas com sucesso!');
@@ -57,7 +58,7 @@ const GerenciarObreirosEvento = () => {
     };
 
     const handleDelete = (id) => {
-        axios.delete(`18.223.170.200/eventoObreiro/${id}`)
+        api.delete(`/eventoObreiro/${id}`)
             .then(() => {
                 alert('Obreiro removido com sucesso!');
                 fetchObreiros();

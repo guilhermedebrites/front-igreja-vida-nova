@@ -11,16 +11,31 @@ const GerenciarObreiros = () => {
     const [openModalAddObreiro, setOpenModalAddObreiro] = useState(false);
     const [openModalGerenciarFuncoes, setOpenModalGerenciarFuncoes] = useState(false);
     const [obreiros, setObreiros] = React.useState([]);
+    const [imagens, setImagens] = useState({});
+
+    const carregarImagem = (id) => {
+        api.get(`membros/obterImagem/${id}`, { responseType: 'blob' })
+            .then(response => {
+                const imgURL = URL.createObjectURL(response.data);
+                setImagens(prev => ({ ...prev, [id]: imgURL }));
+            })
+            .catch(error => {
+                console.error(`Erro ao buscar imagem do obreiro ${id}:`, error);
+            });
+    };
 
     const getObreiros = () => {
         api.get('/obreiros/')
-                .then(response => {
-                    setObreiros(response.data);
-                })
-                .catch(error => {
-                    console.error('Erro ao buscar eventos:', error);
+            .then(response => {
+                setObreiros(response.data);
+                response.data.forEach(obreiro => {
+                    carregarImagem(obreiro.id);
                 });
-    }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar obreiros:', error);
+            });
+    };
 
     const handleOpenModalAddObreiros = () => setOpenModalAddObreiro(true);
     const handleCloseModalAddObreiros = () => {
@@ -111,8 +126,9 @@ const GerenciarObreiros = () => {
                                 width: '384px',
                             }}
                         >
+                            {console.log(imagens[obreiro.id])}
                             <img 
-                                src="../src/assets/images/Elipse.png" 
+                                src={imagens[obreiro.id] || "../src/assets/images/Elipse.png"}
                                 style={{width: '80px', height: '80px', borderRadius: '50%'}}
                             />
                             <SecondTextStyled>{obreiro.fullName}</SecondTextStyled>

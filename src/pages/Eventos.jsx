@@ -77,8 +77,32 @@ const Eventos = () => {
                     }}
                 >
                     <MainTextStyled>Eventos</MainTextStyled>
-                    {isPastor && (
-                        <PrimaryButtonStyled
+                    <div
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '16px'
+                        }}
+                    >
+                        {isPastor && (
+                            <PrimaryButtonStyled
+                                backgroundColor='#1E984F'
+                                color='white'
+                                width='160px'
+                                height='32px'
+                                fontSize='16px'
+                                fontWeight='bold'
+                                style ={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                }}
+                                onClick={handleOpenModalCreateEvent}
+                            >
+                                Criar Evento
+                            </PrimaryButtonStyled>
+                        )}
+                        {!isPastor && <PrimaryButtonStyled
                             backgroundColor='#1E984F'
                             color='white'
                             width='160px'
@@ -92,9 +116,10 @@ const Eventos = () => {
                             }}
                             onClick={handleOpenModalCreateEvent}
                         >
-                            Criar Evento
+                            Solicitar Visita
                         </PrimaryButtonStyled>
-                    )}
+                        }
+                    </div>
                 </Container>
                 <Container item sx={{ display: 'flex', gap: '35px', flexWrap: 'wrap' }}>
                     {eventos.map((evento) => (
@@ -104,6 +129,7 @@ const Eventos = () => {
                             isPastor={isPastor}
                             handleDelete={() => handleDelete(evento)}
                             handleOpenModalEdit={() => handleOpenModalEdit(evento)}
+                            getEventos={getEventos}
                         />
                     ))}
                 </Container>
@@ -111,6 +137,7 @@ const Eventos = () => {
 
             <ModalCreateEvent
                 open={openModalCreateEvent}
+                isPastor={isPastor}
                 handleClose={handleCloseModalCreateEvent}
             />
 
