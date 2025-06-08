@@ -1,4 +1,4 @@
-import { faHouse, faTicket, faEnvelopeOpen, faUser, faLongArrowAltLeft, faHandHoldingDollar, faHandsPraying, faWebAwesome } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faTicket, faEnvelopeOpen, faUser, faLongArrowAltLeft, faHandHoldingDollar, faHandsPraying, faWebAwesome, faMusic } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import MenuItems from './MenuItems';
 import { HeaderBox } from './styles/HeaderStyled';
@@ -122,6 +122,16 @@ const Header = () => {
                         onClick={() => {
                             setActiveItem('/doacoes');
                             navigate('/doacoes');
+                        }}
+                    />
+                    <MenuItems 
+                        icon={faMusic} 
+                        text={'Nossa Playlist'} 
+                        color={'#858D95'}
+                        isActive={activeItem === '/playlists'} 
+                        onClick={() => {
+                            setActiveItem('/playlists');
+                            navigate('/playlists');
                         }}
                     />
                     <MenuItems 
