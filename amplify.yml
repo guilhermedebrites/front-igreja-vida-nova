@@ -3,12 +3,11 @@ frontend:
   phases:
     preBuild:
       commands:
-        - nvm install 20
-        - nvm use 20
         - npm ci
     build:
       commands:
         - npm run build
+        - rm -rf node_modules # <--- limpa antes de criar artefato
   artifacts:
     baseDirectory: dist
     files:
