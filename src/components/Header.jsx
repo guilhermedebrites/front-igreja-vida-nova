@@ -134,7 +134,7 @@ const Header = () => {
                             navigate('/perfil');
                         }}
                     />
-                    {isLoading ? (
+                    {localStorage.getItem('access_token') ? (
                         <MenuItems 
                             icon={faLongArrowAltLeft} 
                             text={'Sair'} 
@@ -149,7 +149,7 @@ const Header = () => {
                             text={'Entrar'} 
                             color={'#858D95'}
                             onClick={() => {
-                                window.location.href = '/login';
+                                navigate('/login');
                             }}
                         />
                     )}
