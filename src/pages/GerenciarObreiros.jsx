@@ -126,7 +126,6 @@ const GerenciarObreiros = () => {
                                 width: '384px',
                             }}
                         >
-                            {console.log(imagens[obreiro.id])}
                             <img 
                                 src={imagens[obreiro.id] || "../src/assets/images/Elipse.png"}
                                 style={{width: '80px', height: '80px', borderRadius: '50%'}}
