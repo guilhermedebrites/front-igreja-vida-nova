@@ -1,4 +1,3 @@
-// import * as React from 'react';
 import React, { useState, useEffect } from 'react'
 import api from '../axiosConfig';
 import InputText from '../components/InputText';

@@ -1,16 +1,17 @@
 import { Container } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../axiosConfig";
+import { PrimaryButtonStyled } from '../components/styles/ButtonStyled';
 import {
   BirthdayBoxStyled,
   BirthdayRankingStyled,
   VersiculoBoxStyled
 } from "../components/styles/HomeStyled";
-import { PrimaryButtonStyled } from '../components/styles/ButtonStyled';
 import {
   MainTextStyled,
   SecondTextStyled,
 } from "../components/styles/TextStyled";
+
 
 const Home = () => {
   const [aniversariantes, setAniversariantes] = useState([]);
@@ -85,96 +86,98 @@ const Home = () => {
   }, []);
 
   return (
-    <Container
-      disableGutters
-      maxWidth={false}
-      sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        backgroundColor: "#DADADA",
-      }}
-    >
-      <Container item sx={{ margin: "75px 0px 0px 192px" }}>
-        <MainTextStyled>O que somos?</MainTextStyled>
-        <SecondTextStyled>
-          De acordo com a ciência, somos descendentes de uma espécime primata,
-          vinda dos Homos sapiens, através de uma evolução de milhões de anos.
-          E ainda de acordo com a ciência, somos um emaranhado de compostos
-          químicos. De acordo com a Bíblia, fomos formados do pó, aonde a
-          ciência, acorda com a Bíblia. Somos a evolução do plano de Deus,
-          para sermos uma criação perfeita, aonde a ciência concorda
-          novamente, que chegamos no estágio final da evolução.
-        </SecondTextStyled>
-      </Container>
-
-      <Container item sx={{ margin: "75px 192px 0px 0px" }}>
-        {isPastor && (
-          <PrimaryButtonStyled
-            backgroundColor='#1E984F'
-            color='white'
-            height='32px'
-            width='100%'
-            fontSize='16px'
-            fontWeight='bold'
-            disabled={isLoadingRelatorio}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '20px',
-              opacity: isLoadingRelatorio ? 0.5 : 1,
-              cursor: isLoadingRelatorio ? 'not-allowed' : 'pointer'
-            }}
-            onClick={handleGenerateRelatorio}
-          >
-            {isLoadingRelatorio ? 'Gerando Relatório...' : 'Relatório de Resumo Geral'}
-          </PrimaryButtonStyled>
-        )}
-
-        <BirthdayBoxStyled>
-          <SecondTextStyled
-            color={"#030B16"}
-            fontSize={"20px"}
-            fontWeight={"bold"}
-          >
-            Aniversáriantes Do Mês
+    <>
+      <Container
+        disableGutters
+        maxWidth={false}
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          backgroundColor: "#DADADA",
+        }}
+      >
+        <Container item sx={{ margin: "75px 0px 0px 192px" }}>
+          <MainTextStyled>O que somos?</MainTextStyled>
+          <SecondTextStyled>
+            De acordo com a ciência, somos descendentes de uma espécime primata,
+            vinda dos Homos sapiens, através de uma evolução de milhões de anos.
+            E ainda de acordo com a ciência, somos um emaranhado de compostos
+            químicos. De acordo com a Bíblia, fomos formados do pó, aonde a
+            ciência, acorda com a Bíblia. Somos a evolução do plano de Deus,
+            para sermos uma criação perfeita, aonde a ciência concorda
+            novamente, que chegamos no estágio final da evolução.
           </SecondTextStyled>
-          {aniversariantes.map((aniversariante, index) => (
-            <div
-              key={index}
+        </Container>
+
+        <Container item sx={{ margin: "75px 192px 0px 0px" }}>
+          {isPastor && (
+            <PrimaryButtonStyled
+              backgroundColor='#1E984F'
+              color='white'
+              height='32px'
+              width='100%'
+              fontSize='16px'
+              fontWeight='bold'
+              disabled={isLoadingRelatorio}
               style={{
-                display: "flex",
-                alignItems: "center",
-                marginTop: "16px",
-                gap: "39px",
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '20px',
+                opacity: isLoadingRelatorio ? 0.5 : 1,
+                cursor: isLoadingRelatorio ? 'not-allowed' : 'pointer'
               }}
+              onClick={handleGenerateRelatorio}
             >
-              <BirthdayRankingStyled>{index + 1}</BirthdayRankingStyled>
-              <SecondTextStyled color={"#030B16"} fontSize={"16px"}>
-                {aniversariante.fullName}
-              </SecondTextStyled>
-              <SecondTextStyled color={"#858D95"} fontSize={"16px"}>
-                {aniversariante.birthday}
-              </SecondTextStyled>
-            </div>
-          ))}
-        </BirthdayBoxStyled>
+              {isLoadingRelatorio ? 'Gerando Relatório...' : 'Relatório de Resumo Geral'}
+            </PrimaryButtonStyled>
+          )}
 
-        <VersiculoBoxStyled>
-          <SecondTextStyled
-            color={"#030B16"}
-            fontSize={"20px"}
-            fontWeight={"bold"}
-          >
-            Versículo do Dia
-          </SecondTextStyled>
-          <div
-            id="dailyVersesWrapper"
-            style={{ marginTop: "0px", fontSize: "20px", color: "#333" }}
-          ></div>
-        </VersiculoBoxStyled>
+          <BirthdayBoxStyled>
+            <SecondTextStyled
+              color={"#030B16"}
+              fontSize={"20px"}
+              fontWeight={"bold"}
+            >
+              Aniversáriantes Do Mês
+            </SecondTextStyled>
+            {aniversariantes.map((aniversariante, index) => (
+              <div
+                key={index}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginTop: "16px",
+                  gap: "39px",
+                }}
+              >
+                <BirthdayRankingStyled>{index + 1}</BirthdayRankingStyled>
+                <SecondTextStyled color={"#030B16"} fontSize={"16px"}>
+                  {aniversariante.fullName}
+                </SecondTextStyled>
+                <SecondTextStyled color={"#858D95"} fontSize={"16px"}>
+                  {aniversariante.birthday}
+                </SecondTextStyled>
+              </div>
+            ))}
+          </BirthdayBoxStyled>
+
+          <VersiculoBoxStyled>
+            <SecondTextStyled
+              color={"#030B16"}
+              fontSize={"20px"}
+              fontWeight={"bold"}
+            >
+              Versículo do Dia
+            </SecondTextStyled>
+            <div
+              id="dailyVersesWrapper"
+              style={{ marginTop: "0px", fontSize: "20px", color: "#333" }}
+            ></div>
+          </VersiculoBoxStyled>
+        </Container>
       </Container>
-    </Container>
+    </>
   );
 };
 
