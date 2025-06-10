@@ -44,7 +44,7 @@ const App = () => {
           </Routes>
         </div>
 
-        <Footer />
+        {showHeader && <Footer />}
       </div>
     </>
   );

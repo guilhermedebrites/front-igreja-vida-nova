@@ -44,13 +44,6 @@ const Login = () => {
       >
         <div item style={{marginRight: '10em'}}>
           <MainTextStyled>Bem-vindo!</MainTextStyled>
-          <SecondTextStyled
-            style={{
-              maxWidth: '400px',
-            }}
-          >
-            Lorem ipsum dolor sit amet consectetur. Ac placerat fringilla consectetur commodo.
-            </SecondTextStyled>
           <InputText 
             id="email" 
             value={email} 

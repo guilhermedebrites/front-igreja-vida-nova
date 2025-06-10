@@ -39,7 +39,7 @@ const Cadastro = () => {
             <Container disableGutters maxWidth={false} sx={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' , width: '100vw', height: '100vh'}}>
                 <Container item sx={{ ml: '154px', mr: '126px'}}>
                   <MainTextStyled>Cadastre-se</MainTextStyled>
-                  <SecondTextStyled>Lorem ipsum dolor sit amet consectetur. Ac placerat fringilla consectetur commodo.</SecondTextStyled>
+                  <SecondTextStyled>Crie sua conta e faça parte do propósito!</SecondTextStyled>
                 </Container>
                 <Container item sx={{ margin: '40px 16px 40px 0px'}}>
                     <InputText 
